@@ -1,0 +1,14 @@
+{
+  "name": "claude-sidebar",
+  "owner": {
+    "name": "Mitchell Setsma"
+  },
+  "description": "The sidebar Claude Code mod.",
+  "plugins": [
+    {
+      "name": "sidebar",
+      "source": "./",
+      "description": "Toggleable sidebar: usage, todos, subagents, MCP servers, recent tools."
+    }
+  ]
+}
