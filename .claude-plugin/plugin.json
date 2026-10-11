@@ -1,7 +1,7 @@
 {
   "name": "sidebar",
   "version": "0.3.0",
-  "description": "Toggleable sidebar with session usage (limit resets, burn rate, compaction forecast), git status, quick prompts, todos, subagents, MCP servers with per-server token cost, tool activity, errors and files touched with diff sizes; collapsible sections and in-pane settings.",
+  "description": "Toggleable sidebar: usage and rate limits, git status, quick prompts, slash commands, todos, subagents, MCP servers with token cost, tool activity and errors; collapsible sections and in-pane settings.",
   "author": {
     "name": "Mitchell Setsma"
   },

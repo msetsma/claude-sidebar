@@ -1,8 +1,17 @@
 # claude-sidebar
 
-A Claude Code mod (hooks-module plugin) named `sidebar`.
+A Claude Code mod (hooks-module plugin) named `sidebar`. `/sidebar` toggles a pane that refreshes every 5 s and shows:
 
-`/sidebar` toggles a pane with model, turns, burn rate ($/hr, $/turn), context and rate-limit bars with reset times, cost, git branch, ahead/behind and the changed files from `git status` with `+add −del` (click to copy), quick-prompt buttons that fill the composer (edit them in place), slash commands (skills, plugin and user commands, MCP prompts) grouped by package (click to fill `/name`), todos, subagents, MCP servers with per-server call and token estimates, tool activity (running calls spin with a live timer, merged repeats, click to copy) and failed calls (click to expand). Click a header to collapse it; ⚙ sets each section to show/auto/hide, the row count, and the look: icon set (unicode, Nerd Font, ASCII), bar style, color and width, header rule, spacing, spinner and bar motion, saved across sessions. Refreshes every 5 s.
+- **Usage**: model, turns, cost, burn rate ($/hr, $/turn), context and rate-limit bars with reset times
+- **Git**: branch, ahead/behind, changed files from `git status` with `+add −del` (click to copy)
+- **Prompts**: quick-prompt buttons that fill the composer; edit them in place
+- **Commands**: skills, plugin and user commands, MCP prompts, grouped by package (click to fill `/name`)
+- **Todos and subagents**
+- **MCP servers**: per-server call and token estimates
+- **Activity**: running calls spin with a live timer, repeats merge, click to copy
+- **Errors**: failed calls, click to expand
+
+Click a header to collapse a section. ⚙ sets each section to show/auto/hide, the row count, and the look (icon set: unicode, Nerd Font or ASCII; bar style, color and width; header rule; spacing; spinner and bar motion). Settings persist across sessions.
 
 ## Install
 
@@ -13,11 +22,9 @@ claude plugin marketplace add msetsma/claude-sidebar
 claude plugin install sidebar@claude-sidebar
 ```
 
-My own setup consumes it through the `dotfiles-mods` marketplace in `~/.dotfiles-agents`, which lists this repo as a GitHub source.
-
 ## Layout
 
-```
+```text
 .claude-plugin/plugin.json        # name, version, description, types
 .claude-plugin/marketplace.json   # makes the repo installable as a marketplace
 hooks/hooks.json                  # { "modules": ["./register.tsx"] }
@@ -41,6 +48,7 @@ claude plugin test .
 
 For a watched dev loop that reloads on every save, start a session with
 `claude --plugin-dir <clone>`. Otherwise run `/reload-plugins` in that session
-after an edit. An installed copy (`sidebar@claude-sidebar`) is a cached
-snapshot, so it only sees pushed changes after
-`claude plugin marketplace update claude-sidebar`.
+after an edit.
+
+> [!NOTE]
+> An installed copy (`sidebar@claude-sidebar`) is a cached snapshot: it sees pushed changes only after `claude plugin marketplace update claude-sidebar`.
