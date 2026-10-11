@@ -1,5 +1,7 @@
 # claude-sidebar
 
+[![CI](https://github.com/msetsma/claude-sidebar/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/msetsma/claude-sidebar/actions/workflows/ci.yml)
+
 A Claude Code mod (hooks-module plugin) named `sidebar`. `/sidebar` toggles a pane that refreshes every 5 s and shows:
 
 - **Usage**: model, turns, cost, burn rate ($/hr, $/turn), context and rate-limit bars with reset times
