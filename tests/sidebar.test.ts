@@ -271,6 +271,27 @@ test('MCP usage accumulates per server', async ($, on) => {
   }
 })
 
+test('MCP usage skips subagent calls and resets when the conversation ends', async ($, on) => {
+  mock.clock(on)
+  session(on, ['mcp__github__get_me'])
+  on('tool.call', () => ({ result: {}, text: 'x'.repeat(38) }))
+  on('session.end', () => ({ sessionId: 's1' }))
+  await $.tool.call({ tool: 'mcp__github__get_me' })
+  await $.tool.call({ tool: 'mcp__github__get_me', agentId: 'a1' })
+  await openSidebar($)
+
+  const mcpRow = async () => {
+    const ui = await $.ui.mount({ ...PANE, surface: 'terminal' })
+    const row = (await ui.find({ type: 'Text', text: /^● github/ }))?.text
+    await ui.unmount()
+    return row
+  }
+  expect(await mcpRow()).toBe('● github 1 tools · 1 calls ~10 tok')
+
+  await $.session.end({ reason: 'clear', sessionId: 's1', resume: {} as never })
+  expect(await mcpRow()).toBe('● github 1 tools')
+})
+
 const THEME_KEYS = [
   'text', 'inverseText', 'inactive', 'subtle', 'suggestion', 'remember', 'success', 'error', 'warning', 'merged',
   'claude', 'permission', 'planMode', 'autoAccept', 'promptBorder', 'bashBorder', 'ide', 'diffAdded', 'diffRemoved',

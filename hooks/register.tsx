@@ -613,6 +613,13 @@ export const register: Register = on => {
     return next(e)
   })
 
+  // $.state outlives the conversation: /clear and an in-process resume end it with no
+  // session.start after. Reset here, not in session.start, which a hot reload fires too.
+  on('session.end', async ($, e, next) => {
+    await update($, mcpUsage, () => ({}))
+    return next(e)
+  })
+
   on('command.run', { command: 'sidebar' }, async $ => ({ text: await toggle($) }))
 
   on('session.measure', async ($, e, next) => {
@@ -664,8 +671,9 @@ export const register: Register = on => {
       await update($, errors, list => [...list, row].slice(-KEEP_ERRORS))
     }
 
+    // A subagent's results land in its own context, not this one.
     const server = mcpServerOf(tool)
-    if (server !== undefined) {
+    if (server !== undefined && !e.agentId) {
       await update($, mcpUsage, all => ({
         ...all,
         [server]: { calls: (all[server]?.calls ?? 0) + 1, tokens: (all[server]?.tokens ?? 0) + tokens },
