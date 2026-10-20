@@ -1,0 +1,22 @@
+name: Bug report
+description: Something in the sidebar is wrong or broken
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you expected and what you saw instead. A screenshot of the pane helps.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Claude Code and sidebar versions
+      placeholder: "claude --version, plugin version"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce

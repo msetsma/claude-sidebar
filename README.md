@@ -1,6 +1,11 @@
 # claude-sidebar
 
 [![CI](https://github.com/msetsma/claude-sidebar/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/msetsma/claude-sidebar/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/msetsma/claude-sidebar)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/msetsma/claude-sidebar)](https://github.com/msetsma/claude-sidebar/commits/main)
+[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-D97757)](#install)
+
+![The sidebar open beside a Claude Code session, showing usage, git, prompts, commands and activity](docs/screenshot.png)
 
 A Claude Code mod (hooks-module plugin) named `sidebar`. `/sidebar` toggles a pane that refreshes every 5 s and shows:
 
