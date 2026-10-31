@@ -591,7 +591,8 @@ async function toggle($: EngineInterface): Promise<string> {
     return 'Sidebar closed.'
   }
   await refresh($)
-  await $.ui.open({ id: PANE, title: 'Sidebar', columns: 44 })
+  // Transparent: the pane shows the terminal's own background, not the surface's gray fill.
+  await $.ui.open({ id: PANE, title: 'Sidebar', columns: 44, backgroundColor: 'transparent' })
   return 'Sidebar opened.'
 }
 

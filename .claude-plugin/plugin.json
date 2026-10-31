@@ -1,6 +1,6 @@
 {
   "name": "sidebar",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Toggleable sidebar: usage and rate limits, git status, quick prompts, slash commands, todos, subagents, MCP servers with token cost, tool activity and errors; collapsible sections and in-pane settings.",
   "author": {
     "name": "Mitchell Setsma"
