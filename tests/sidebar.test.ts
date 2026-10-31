@@ -77,7 +77,10 @@ function session(on: On, tools: string[]) {
   on('agent.list', () => ({ value: [] }))
   on('command.list', () => ({ value: [{ name: 'peek', description: '', source: 'user' as const }] }))
   on('ui.panes', () => ({ value: [] }))
-  on('ui.open', () => ({ value: { isPlaced: true as const } }))
+  on('ui.open', ($, e) => {
+    expect(e).toMatchObject({ backgroundColor: 'transparent' })
+    return { value: { isPlaced: true as const } }
+  })
   // git: a clean `main` one ahead of origin, and a numstat for the file the tests edit.
   on('process.run', ($, e) => {
     const stdout =
